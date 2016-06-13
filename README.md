@@ -36,13 +36,19 @@ docker run -v /path/to/storage:/mirror -v /path/to/config.yaml:/config.yaml sjoe
 ## options:
 
 `hardlink` will enabled running hardlink you your repos to save space.
+
 `hardlink_dir` required if `hardlink` is set true, the dir to use for hardlinking (the common parent directory of all the repos you with to hardlink)
+
 `mirrors` A hash of mirror, with the following attributes:
 
 `type` currently `rsync` or `reposync`
+
 `url` the source url to sync, must be a type usable by the `type` specified
+
 `dest` destination of the sync.
+
 `datestamp` boolean to enable moving the `dest` to `dest.YYYY-MM-DD`
+
 `link_datestamp` if datestamp'ing, enabled likning `dest` to `dest.YYYY-MM-DD`
 
 When using `reposync`, we will also do a `createrepo` on the fetched packages. `rsync` gets everything so you'll have the same repodata as the source.
