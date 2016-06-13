@@ -3,11 +3,15 @@
 :hardlink_dir: '/mirror'
 :datestamp: false
 :mirrors:
-  centos-6-x86-os:
-    :type: 'rsync'
-    :url: 'rsync://mirrors.tripadvisor.com/centos/6/os/x86_64/'
-    :dest: '/mirror/centos-6-x86/os/'
-  centos-7-x86-os:
-    :type: 'reposync'
-    :url: 'http://mirrors.tripadvisor.com/centos/7/os/x86_64/'
-    :dest: '/mirror/centos-7-x86/os'
+#  centos-6-x86-os:
+#    :type: 'rsync'
+#    :url: 'rsync://mirrors.tripadvisor.com/centos/6/os/x86_64/'
+#    :dest: '/mirror/centos-6-x86/os/'
+#  centos-7-x86-os:
+#    :type: 'reposync'
+#    :url: 'http://mirrors.tripadvisor.com/centos/7/os/x86_64/'
+#    :dest: '/mirror/centos-7-x86/os'
+   puppetlabs-pc1-7-x86_64:
+     :type: 'reposync'
+     :url: 'http://yum.puppetlabs.com/el/7/PC1/x86_64/'
+     :dest: '/mirror/centos-7-x86/pc1'
