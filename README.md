@@ -51,4 +51,6 @@ docker run -v /path/to/storage:/mirror -v /path/to/config.yaml:/config.yaml sjoe
 
 `link_datestamp` if datestamp'ing, enabled likning `dest` to `dest.YYYY-MM-DD`
 
+`hardlink_datestamp` boolean to enable, instead of moving `dest` to `dest.YYYY-MM-DD`, to hardlink all files, creating a snapshot if you will.
+
 When using `reposync`, we will also do a `createrepo` on the fetched packages. `rsync` gets everything so you'll have the same repodata as the source.

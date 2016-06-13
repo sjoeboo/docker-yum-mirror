@@ -46,7 +46,15 @@ mirrors.each_pair do |name,mirror|
   #See if we're supposed to datestamp and/or link the repo.
   if mirror[:datestamp]
     datestamp = "#{Time.now.strftime('%Y-%m-%d')}"
-    `mv #{mirror[:dest]} #{mirror[:dest]}.#{datestamp}`
+    if mirror[:hardlink_datestamp]
+      dirname = File.dirname("#{mirror[:dest]}.#{datestamp}")
+    	unless File.directory?(dirname)
+    		FileUtils.mkdir_p(dirname)
+    	end
+      `cp -R -l -v #{mirror[:dest]}/* #{mirror[:dest]}.#{datestamp}/`
+    else
+      `mv #{mirror[:dest]} #{mirror[:dest]}.#{datestamp}`
+    end
     if mirror[:link_datestamp]
       `ln -s $(basename #{mirror[:dest]}.#{datestamp}) #{mirror[:dest]}`
     end
