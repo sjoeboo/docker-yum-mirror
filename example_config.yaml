@@ -1,0 +1,5 @@
+---
+centos-6-x86-os:
+  :type: 'rsync'
+  :url: 'rsync://mirrors.tripadvisor.com/centos/6/os/x86_64/'
+  :dest: '/mirror/centos-6-x86/os/'
