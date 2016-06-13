@@ -46,7 +46,11 @@ mirrors.each_pair do |name,mirror|
   #See if we're supposed to datestamp and/or link the repo.
   if mirror[:datestamp]
     datestamp = "#{Time.now.strftime('%Y-%m-%d')}"
-    `mv #{mirror[:dest]} #{mirror[:dest]}.#{datestamp}` 
+    `mv #{mirror[:dest]} #{mirror[:dest]}.#{datestamp}`
+    if mirror[:link_datestamp]
+      `ln -s #{mirror[:dest]}.#{datestamp} #{mirror[:dest]}`
+    end
+  end
 end
 puts "Syncing done!"
 if options[:hardlink] and options[:hardlink_dir]
