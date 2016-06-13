@@ -4,7 +4,7 @@
 :mirrors:
   centos-7-x86-os:
     :type: 'rsync'
-    :url: 'rsync://mirrors.kernel.org/centos7/os/x86_64/'
+    :url: 'rsync://mirrors.kernel.org/centos/7/os/x86_64/'
     :dest: '/mirror/centos-7-x86_64/os'
     :datestamp: true
     :hardlink_datestamp: true
