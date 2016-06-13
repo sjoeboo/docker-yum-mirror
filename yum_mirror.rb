@@ -44,6 +44,6 @@ mirrors.each_pair do |name,mirror|
 end
 puts "Syncing done!"
 if options[:hardlink] and options[:hardlink_dir]
-  puts "Running hardlink on #{hardlink_dir}"
-  `/usr/bin/hardlink -vv #{hardlink_dir}`
+  puts "Running hardlink on #{options[:hardlink_dir]}"
+  `/usr/bin/hardlink -vv #{options[:hardlink_dir]}`
 end
