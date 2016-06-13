@@ -38,6 +38,9 @@ mirrors.each_pair do |name,mirror|
     #run reposync
     reposync_cmd="/usr/bin/reposync -c /tmp.repo --repoid='.' -p #{mirror[:dest]}"
     `#{reposync_cmd}`
+    #Generate repo data
+    `/usr/bin/createrepo -u #{mirror[:dest]}`
+
 	else
     puts "Type #{mirror[:type]} not supported"
   end
@@ -45,5 +48,5 @@ end
 puts "Syncing done!"
 if options[:hardlink] and options[:hardlink_dir]
   puts "Running hardlink on #{options[:hardlink_dir]}"
-  `/usr/bin/hardlink -vv #{options[:hardlink_dir]}`
+  `/usr/sbin/hardlink -vv #{options[:hardlink_dir]}`
 end

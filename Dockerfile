@@ -1,6 +1,6 @@
 FROM centos:7
 
-RUN yum -y install ruby rubygems ruby-devel rsync && yum -y update && yum clean all
+RUN yum -y install ruby rubygems ruby-devel rsync createrepo && yum -y update && yum clean all
 RUN gem install bundler
 
 COPY example_config.yaml /config.yaml
