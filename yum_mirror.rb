@@ -33,12 +33,17 @@ mirrors.each_pair do |name,mirror|
   when "reposync"
     #Need to make tmp .repo file
     tmp_repo_file="/tmp.repo"
-    tmp_repo_contents="[#{name}]\nname=#{name}\nbaseurl=#{mirror[:url]}\ngpgcheck=0\ngpgkey="
+    tmp_repo_contents="[.]\nname=.\nbaseurl=#{mirror[:url]}\ngpgcheck=0\ngpgkey="
     File.open(tmp_repo_file, 'w') { |file| file.write(tmp_repo_contents) }
     #run reposync
-    reposync_cmd="/usr/bin/reposync -c /tmp.repo --repoid=#{name} -p #{mirror[:dest]}"
+    reposync_cmd="/usr/bin/reposync -c /tmp.repo --repoid='.' -p #{mirror[:dest]}"
     `#{reposync_cmd}`
 	else
     puts "Type #{mirror[:type]} not supported"
   end
+end
+puts "Syncing done!"
+if options[:hardlink] and options[:hardlink_dir]
+  puts "Running hardlink on #{hardlink_dir}"
+  `/usr/bin/hardlink -vv #{hardlink_dir}`
 end

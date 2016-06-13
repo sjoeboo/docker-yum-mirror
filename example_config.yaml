@@ -2,7 +2,7 @@
 :hardlink: true
 :hardlink_dir: '/mirror'
 :datestamp: false
-:mirros:
+:mirrors:
   centos-6-x86-os:
     :type: 'rsync'
     :url: 'rsync://mirrors.tripadvisor.com/centos/6/os/x86_64/'
@@ -10,4 +10,4 @@
   centos-7-x86-os:
     :type: 'reposync'
     :url: 'http://mirrors.tripadvisor.com/centos/7/os/x86_64/'
-    :dest: 'mirror/centos-7-x86/os'
+    :dest: '/mirror/centos-7-x86/os'
