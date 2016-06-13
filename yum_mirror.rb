@@ -47,7 +47,11 @@ mirrors.each_pair do |name,mirror|
   if mirror[:datestamp]
     datestamp = "#{Time.now.strftime('%Y-%m-%d')}"
     if mirror[:hardlink_datestamp]
-      `mkdir -p  #{mirror[:dest]}.#{datestamp}/`
+      if File.directory?("#{mirror[:dest]}.#{datestamp}/")
+        `rm -rf #{mirror[:dest]}.#{datestamp}/`
+      else
+        `mkdir -p  #{mirror[:dest]}.#{datestamp}/`
+      end
       `cp -R -l -v #{mirror[:dest]}/* #{mirror[:dest]}.#{datestamp}/`
     else
       `mv #{mirror[:dest]} #{mirror[:dest]}.#{datestamp}`
