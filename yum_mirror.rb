@@ -9,7 +9,9 @@ require 'fileutils'
 #Load config
 config_path='/config.yaml'
 
-mirrors=YAML::load(open(File.expand_path(config_path)))
+options=YAML::load(open(File.expand_path(config_path)))
+mirrors=options[:mirrors]
+pp options
 mirrors.each_pair do |name,mirror|
 	puts "Now syncing #{name}"
 	#Make the destination if it doesn't exist
@@ -28,6 +30,14 @@ mirrors.each_pair do |name,mirror|
            puts result.error
          end
 		end
+  when "reposync"
+    #Need to make tmp .repo file
+    tmp_repo_file="/tmp.repo"
+    tmp_repo_contents="[#{name}]\nname=#{name}\nbaseurl=#{mirror[:url]}\ngpgcheck=0\ngpgkey="
+    File.open(tmp_repo_file, 'w') { |file| file.write(tmp_repo_contents) }
+    #run reposync
+    reposync_cmd="/usr/bin/reposync -c /tmp.repo --repoid=#{name} -p #{mirror[:dest]}"
+    `#{reposync_cmd}`
 	else
     puts "Type #{mirror[:type]} not supported"
   end
