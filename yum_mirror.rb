@@ -48,7 +48,7 @@ mirrors.each_pair do |name,mirror|
     datestamp = "#{Time.now.strftime('%Y-%m-%d')}"
     `mv #{mirror[:dest]} #{mirror[:dest]}.#{datestamp}`
     if mirror[:link_datestamp]
-      `ln -s #{mirror[:dest]}.#{datestamp} #{mirror[:dest]}`
+      `ln -s $(basename #{mirror[:dest]}.#{datestamp}) #{mirror[:dest]}`
     end
   end
 end
