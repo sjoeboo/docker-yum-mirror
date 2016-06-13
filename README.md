@@ -2,6 +2,12 @@
 
 Builds yum package mirrors for you in a containers via a yaml formatted config file.
 
+## Usage
+
+```
+docker run -v /path/to/storage:/mirror -v /path/to/config.yaml:/config.yaml sjoeboo/docker-yum-mirror:latest
+```
+
 ## config example:
 
 ```
