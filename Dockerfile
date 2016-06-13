@@ -8,3 +8,5 @@ COPY yum_mirror.rb /yum_mirror.rb
 COPY Gemfile /Gemfile
 
 RUN cd / && bundle install
+
+CMD /yum_mirror.rb
