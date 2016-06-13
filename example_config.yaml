@@ -1,7 +1,6 @@
 ---
 :hardlink: true
 :hardlink_dir: '/mirror'
-:repoview: true
 :datestamp: false
 :mirrors:
   centos-7-x86-64-extras:
