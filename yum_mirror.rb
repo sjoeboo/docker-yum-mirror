@@ -40,10 +40,13 @@ mirrors.each_pair do |name,mirror|
     `#{reposync_cmd}`
     #Generate repo data
     `/usr/bin/createrepo --update #{mirror[:dest]}/`
-
 	else
     puts "Type #{mirror[:type]} not supported"
   end
+  #See if we're supposed to datestamp and/or link the repo.
+  if mirror[:datestamp]
+    datestamp = "#{Time.now.strftime('%Y-%m-%d')}"
+    `mv #{mirror[:dest]} #{mirror[:dest]}.#{datestamp}` 
 end
 puts "Syncing done!"
 if options[:hardlink] and options[:hardlink_dir]
