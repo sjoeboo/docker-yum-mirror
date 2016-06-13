@@ -39,7 +39,7 @@ mirrors.each_pair do |name,mirror|
     reposync_cmd="/usr/bin/reposync -c /tmp.repo --repoid='.' -p #{mirror[:dest]}"
     `#{reposync_cmd}`
     #Generate repo data
-    `/usr/bin/createrepo -u #{mirror[:dest]}`
+    `/usr/bin/createrepo -u #{mirror[:dest]}/`
 
 	else
     puts "Type #{mirror[:type]} not supported"
