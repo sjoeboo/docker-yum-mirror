@@ -54,9 +54,9 @@ mirrors.each_pair do |name,mirror|
       `cp -R -l -v #{mirror[:dest]}/* #{mirror[:dest]}.#{datestamp}/`
     else
       `mv #{mirror[:dest]} #{mirror[:dest]}.#{datestamp}`
-    end
-    if mirror[:link_datestamp]
-      `ln -s $(basename #{mirror[:dest]}.#{datestamp}) #{mirror[:dest]}`
+      if mirror[:link_datestamp]
+        `ln -s $(basename #{mirror[:dest]}.#{datestamp}) #{mirror[:dest]}`
+      end
     end
   end
 end
