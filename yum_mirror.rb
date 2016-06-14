@@ -139,3 +139,7 @@ puts "Syncing done!"
 if options[:hardlink] and options[:hardlink_dir]
 	global_hardlink(options[:hardlink_dir])
 end
+
+if options[:all]
+	all_repo(options,mirrors)
+end
