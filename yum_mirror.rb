@@ -88,8 +88,11 @@ def all_repo(options,mirrors)
 		end
 		mirrors.each_pair do |name,mirror|
 			if mirror[:dist] == dist
-				puts "Fake hardlinking #{options[:mirror_base]}/#{dist}/#{name}/*.rpm #{dest}"
-				`cp -R -l -v #{options[:mirror_base]}/#{dist}/#{name}/*.rpm #{dest}/`
+				puts "Hardlinking #{options[:mirror_base]}/#{dist}/#{name}/*.rpm #{dest}"
+				rpms=Dir.glob("#{options[:mirror_base]}/#{dist}/#{name}/**/*.rpm")
+				rpms.each do |rpm|
+					`cp -R -l -v #{rpm} #{dest}/`
+				end
 			else
 				next
 			end
