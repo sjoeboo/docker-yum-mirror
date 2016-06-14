@@ -120,18 +120,19 @@ mirrors.each_pair do |name,mirror|
 		unless File.directory?(dirname)
 			FileUtils.mkdir_p(dirname)
 		end
-	case mirror[:type]
-	 when "rsync"
-		 mirror_sync_rsync(mirror)
-  when "reposync"
-    mirror_sync_reposync(mirror)
-	else
-    puts "Type #{mirror[:type]} not supported"
-  end
-  #See if we're supposed to datestamp and/or link the repo.
-  if mirror[:datestamp]
-		mirror_datestamp(mirror)
-  end
+		case mirror[:type]
+		when "rsync"
+			mirror_sync_rsync(mirror)
+		when "reposync"
+			mirror_sync_reposync(mirror)
+		else
+			puts "Type #{mirror[:type]} not supported"
+		end
+		#See if we're supposed to datestamp and/or link the repo.
+		if mirror[:datestamp]
+			mirror_datestamp(mirror)
+		end
+	end
 end
 puts "Syncing done!"
 
