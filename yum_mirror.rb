@@ -71,11 +71,11 @@ end
 
 def datestamp_all(dest)
 		datestamp = "#{Time.now.strftime('%Y-%m-%d')}"
-		if File.directory?("#{dest]}.#{datestamp}/")
-			puts "#{dest]}.#{datestamp}/ already exists, skipping!"
+		if File.directory?("#{dest}.#{datestamp}/")
+			puts "#{dest}.#{datestamp}/ already exists, skipping!"
 		else
-			`mkdir -p  #{dest]}.#{datestamp}/`
-			`cp -R -l -v #{dest]}/* #{dest]}.#{datestamp}/`
+			`mkdir -p  #{dest}.#{datestamp}/`
+			`cp -R -l -v #{dest}/* #{dest]}.#{datestamp}/`
 		end
 end
 
