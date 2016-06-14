@@ -1,7 +1,7 @@
 ---
 :hardlink: true
 :hardlink_dir: '/mirror'
-:all: false
+:all: true
 :all_name: 'all'
 :mirror_base: '/mirror'
 :mirrors:
