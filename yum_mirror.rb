@@ -114,7 +114,7 @@ def all_repo(options,mirrors)
 
 		#Do we want to datestampt it?
 		if options[:datestamp_all]
-			datestamp_all()
+			datestamp_all(dest)
 		end
 	end
 end
