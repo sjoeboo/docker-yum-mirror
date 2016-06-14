@@ -83,10 +83,8 @@ def all_repo(options,mirrors)
 	#We have a list of dists.
 	dists.each do |dist|
 		dest = "#{options[:mirror_base]}/#{dist}/#{options[:all_name]}"
-
-		dirname = File.dirname(dest)
-		unless File.directory?(dirname)
-			FileUtils.mkdir_p(dirname)
+		unless File.directory?(dest)
+			FileUtils.mkdir_p(dest)
 		end
 		mirrors.each_pair do |name,mirror|
 			if mirror[:dist] == dist
