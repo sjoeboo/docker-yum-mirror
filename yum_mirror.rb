@@ -7,6 +7,7 @@ require 'pp'
 require 'fileutils'
 
 
+
 def load_config()
 	#Load config
 	config_path='/config.yaml'
@@ -53,19 +54,29 @@ end
 
 def mirror_datestamp(mirror)
 	datestamp = "#{Time.now.strftime('%Y-%m-%d')}"
-	if mirror[:hardlink_datestamp]
-		mirror_hardlink_datestamp(mirror)
+	if File.directory?("#{dest]}.#{datestamp}/")
+		puts "#{dest]}.#{datestamp}/ already exists, skipping!"
 	else
-		`mv #{mirror[:dest]} #{mirror[:dest]}.#{datestamp}`
-		if mirror[:link_datestamp]
-			`ln -s $(basename #{mirror[:dest]}.#{datestamp}) #{mirror[:dest]}`
-		end
+		`mkdir -p #{dest]}.#{datestamp}/`
+		`cp -R -l -v #{dest}/*  #{dest]}.#{datestamp}/`
 	end
 end
 
 def global_hardlink(hardlink_dir)
 	puts "Running hardlink on #{hardlink_dir}"
 	`/usr/sbin/hardlink -vv #{hardlink_dir}`
+end
+
+def datestamp_all(dest)
+		datestamp = "#{Time.now.strftime('%Y-%m-%d')}"
+		if mirror[:hardlink_datestamp]
+			mirror_hardlink_datestamp(mirror)
+		else
+			`mv #{mirror[:dest]} #{mirror[:dest]}.#{datestamp}`
+			if mirror[:link_datestamp]
+				`ln -s $(basename #{mirror[:dest]}.#{datestamp}) #{mirror[:dest]}`
+			end
+		end
 end
 
 def all_repo(options,mirrors)
@@ -100,6 +111,11 @@ def all_repo(options,mirrors)
 		#make the big repodata
 		puts "Making repodata for #{options[:all_name]}"
 		`/usr/bin/createrepo --update #{dest}/`
+
+		#Do we want to datestampt it?
+		if options[:datestamp_all]
+			datestamp_all(dest)
+		end
 	end
 end
 

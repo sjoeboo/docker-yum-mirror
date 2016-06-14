@@ -3,6 +3,7 @@
 :hardlink_dir: '/mirror'
 :all: true
 :all_name: 'all'
+:datestamp_all: true
 :mirror_base: '/mirror'
 :mirrors:
   os:
