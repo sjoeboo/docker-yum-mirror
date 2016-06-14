@@ -54,11 +54,13 @@ end
 
 def mirror_datestamp(mirror)
 	datestamp = "#{Time.now.strftime('%Y-%m-%d')}"
-	if File.directory?("#{dest]}.#{datestamp}/")
-		puts "#{dest]}.#{datestamp}/ already exists, skipping!"
+	if mirror[:hardlink_datestamp]
+		mirror_hardlink_datestamp(mirror)
 	else
-		`mkdir -p #{dest]}.#{datestamp}/`
-		`cp -R -l -v #{dest}/*  #{dest]}.#{datestamp}/`
+		`mv #{mirror[:dest]} #{mirror[:dest]}.#{datestamp}`
+		if mirror[:link_datestamp]
+			`ln -s $(basename #{mirror[:dest]}.#{datestamp}) #{mirror[:dest]}`
+		end
 	end
 end
 
@@ -69,13 +71,11 @@ end
 
 def datestamp_all(dest)
 		datestamp = "#{Time.now.strftime('%Y-%m-%d')}"
-		if mirror[:hardlink_datestamp]
-			mirror_hardlink_datestamp(mirror)
+		if File.directory?("#{dest]}.#{datestamp}/")
+			puts "#{dest]}.#{datestamp}/ already exists, skipping!"
 		else
-			`mv #{mirror[:dest]} #{mirror[:dest]}.#{datestamp}`
-			if mirror[:link_datestamp]
-				`ln -s $(basename #{mirror[:dest]}.#{datestamp}) #{mirror[:dest]}`
-			end
+			`mkdir -p  #{dest]}.#{datestamp}/`
+			`cp -R -l -v #{dest]}/* #{dest]}.#{datestamp}/`
 		end
 end
 
@@ -114,7 +114,7 @@ def all_repo(options,mirrors)
 
 		#Do we want to datestampt it?
 		if options[:datestamp_all]
-			datestamp_all(dest)
+			datestamp_all()
 		end
 	end
 end
