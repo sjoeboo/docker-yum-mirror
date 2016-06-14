@@ -96,7 +96,7 @@ def all_repo(options,mirrors)
 		end
 		#make the big repodata
 		puts "Making repodata for #{options[:all_name]}"
-		`/usr/bin/createrepo --update #{dest]}/`
+		`/usr/bin/createrepo --update #{dest}/`
 	end
 end
 
