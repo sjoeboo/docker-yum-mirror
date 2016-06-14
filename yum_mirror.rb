@@ -75,7 +75,7 @@ def datestamp_all(dest)
 			puts "#{dest}.#{datestamp}/ already exists, skipping!"
 		else
 			`mkdir -p  #{dest}.#{datestamp}/`
-			`cp -R -l -v #{dest}/* #{dest]}.#{datestamp}/`
+			`cp -R -l -v #{dest}/* #{dest}.#{datestamp}/`
 		end
 end
 
