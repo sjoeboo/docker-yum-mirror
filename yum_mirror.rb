@@ -122,12 +122,12 @@ end
 options=load_config()
 default_options={
 	:hardlink 		 => true,
-	:hardlink_dir  => '/mirror'
+	:hardlink_dir  => '/mirror',
 	:all 					 => false,
-	:all_name 		 => 'all'
+	:all_name 		 => 'all',
 	:datestamp_all => false,
-	:mirror_base 	 => '/mirror'
-	:mirrors 			 => {}
+	:mirror_base 	 => '/mirror',
+	:mirrors 			 => {},
 }
 options = default_options.merge(options)
 
