@@ -21,5 +21,4 @@ deploy:
   on:
     tags: true
   script: |
-      echo -n "Triggering Docker Hub Build for tag = $TRAVIS_TAG and url == https://registry.hub.docker.com/u/sjoeboo/docker-yum-mirror/trigger/$DOCKER_KEY/" && \
-      curl -s -S -H "Content-Type: application/json" --data '{"source_type": "Tag", "source_name": "$TRAVIS_TAG", "build": "true"}' -X POST https://registry.hub.docker.com/u/sjoeboo/docker-yum-mirror/trigger/$DOCKER_KEY/
+    curl -s -S -H "Content-Type: application/json" --data '{"source_type": "Tag", "source_name": "$TRAVIS_TAG", "build": "true"}' -X POST https://registry.hub.docker.com/u/sjoeboo/docker-yum-mirror/trigger/$DOCKER_KEY/
