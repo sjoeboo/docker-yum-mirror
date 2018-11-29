@@ -20,5 +20,4 @@ deploy:
   provider: script
   on:
     tags: true
-  script: |
-    curl -s -S -H "Content-Type: application/json" --data '{"source_type": "Tag", "source_name": "$TRAVIS_TAG", "build": "true"}' -X POST https://registry.hub.docker.com/u/sjoeboo/docker-yum-mirror/trigger/$DOCKER_KEY/
+  scriipt: curl --data source_type=Tag,source_name=$TRAVIS_TAG -X POST https://registry.hub.docker.com/u/sjoeboo/docker-yum-mirror/trigger/$DOCKER_KEY/
