@@ -1,4 +1,19 @@
+
 language: ruby
+
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - echo "testing123"
+
+script:
+  - docker ps -a
+
+after_success:
+  - echo "Success"
 
 deploy:
   provider: script
