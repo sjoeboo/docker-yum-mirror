@@ -16,5 +16,7 @@ after_success:
   - echo "Success"
 
 deploy:
+  # trigger docker hub build
   provider: script
-  script:  curl -H "Content-Type: application/json" --data '{"source_type": "Tag", "source_name": "$TRAVIS_TAG"}' -X POST https://registry.hub.docker.com/u/sjoeboo/docker-yum-mirror/trigger/$DOCKER_KEY/ 
+  script: |
+      curl -H "Content-Type: application/json" --data '{"source_type": "Tag", "source_name": "$TRAVIS_TAG"}' -X POST https://registry.hub.docker.com/u/sjoeboo/docker-yum-mirror/trigger/$DOCKER_KEY/
