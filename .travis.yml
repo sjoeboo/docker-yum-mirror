@@ -1,6 +1,11 @@
 
 language: ruby
 
+branches:
+  only:
+    - master
+    - /^(?i:master)-.*$/
+    
 sudo: required
 
 services:
