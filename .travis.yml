@@ -20,4 +20,4 @@ deploy:
   - provider: script
     on:
       tags: true
-    script: bash trigger_docker_hub.sh $TRAVIS_TAG
+    script: bash trigger_docker_hub.sh
