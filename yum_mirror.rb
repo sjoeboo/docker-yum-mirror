@@ -48,7 +48,7 @@ def mirror_hardlink_datestamp(mirror)
 		puts "#{mirror[:dest]}.#{datestamp}/ already exists, skipping!"
 	else
 		`mkdir -p  #{mirror[:dest]}.#{datestamp}/`
-		`cp -R -l -v #{mirror[:dest]}/* #{mirror[:dest]}.#{datestamp}/`
+		`for fileName in #{mirror[:dest]}/* ; do cp -R -l -v $fileName #{mirror[:dest]}.#{datestamp}/ ; done`
 	end
 end
 
@@ -75,7 +75,7 @@ def datestamp_all(dest)
 			puts "#{dest}.#{datestamp}/ already exists, skipping!"
 		else
 			`mkdir -p  #{dest}.#{datestamp}/`
-			`cp -R -l -v #{dest}/* #{dest}.#{datestamp}/`
+                        `for fileName in #{dest}/* ; do cp -R -l -v $fileName #{dest}.#{datestamp}/ ; done`
 		end
 end
 
